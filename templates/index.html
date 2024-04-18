@@ -1,0 +1,22 @@
+<!-- file: templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pet Adoption Center</title>
+    <link rel="stylesheet" href="/static/css/style.css" />
+  </head>
+  <body>
+    <h1>Welcome to the Pet Adoption Center</h1>
+    <h2>Featured Pets</h2>
+    <ul>
+      {% for animal in animaux %}
+      <li>
+        <a href="{{ url_for('animal', id=animal.id) }}">{{ animal.nom }}</a> -
+        {{ animal.description }}
+      </li>
+      {% endfor %}
+    </ul>
+    <a href="{{ url_for('add_animal') }}">Add Your Pet for Adoption</a>
+  </body>
+</html>

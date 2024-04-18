@@ -1,51 +1,81 @@
 <!-- file: templates/form.html -->
-<!-- file: templates/form.html -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <title>Add a Pet for Adoption</title>
-    <link href="/static/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="/static/js/script.js" defer></script>
   </head>
   <body>
-    <h1>Add Your Pet</h1>
-    <form method="post" action="{{ url_for('add_animal') }}">
-      <input type="text" name="nom" placeholder="Name" required />
-      <input type="text" name="espece" placeholder="Species" required />
-      <input type="text" name="race" placeholder="Breed" required />
+    <h1>Add Your Pet for Adoption</h1>
+    <form action="{{ url_for('add_animal') }}" method="post" novalidate>
+      <label for="nom">Name:</label>
+      <input
+        type="text"
+        id="nom"
+        name="nom"
+        required
+        minlength="3"
+        maxlength="20"
+        placeholder="Name"
+      />
+      <label for="espece">Species:</label>
+      <input
+        type="text"
+        id="espece"
+        name="espece"
+        required
+        placeholder="Species"
+      />
+      <label for="race">Breed:</label>
+      <input type="text" id="race" name="race" required placeholder="Breed" />
+      <label for="age">Age:</label>
       <input
         type="number"
+        id="age"
         name="age"
-        placeholder="Age"
         required
         min="0"
         max="30"
+        placeholder="Age"
       />
+      <label for="description">Description:</label>
       <textarea
+        id="description"
         name="description"
-        placeholder="Description"
         required
+        placeholder="Description"
       ></textarea>
-      <input type="email" name="courriel" placeholder="Email" required />
-      <input type="text" name="adresse" placeholder="Address" required />
-      <input type="text" name="ville" placeholder="City" required />
+      <label for="courriel">Owner's Email:</label>
+      <input
+        type="email"
+        id="courriel"
+        name="courriel"
+        required
+        placeholder="Email"
+      />
+      <label for="adresse">Address:</label>
       <input
         type="text"
+        id="adresse"
+        name="adresse"
+        required
+        placeholder="Address"
+      />
+      <label for="ville">City:</label>
+      <input type="text" id="ville" name="ville" required placeholder="City" />
+      <label for="cp">Postal Code:</label>
+      <input
+        type="text"
+        id="cp"
         name="cp"
-        placeholder="Postal Code"
         required
         pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d"
+        placeholder="Postal Code"
       />
       <button type="submit">Submit</button>
     </form>
-    {% with messages = get_flashed_messages(with_categories=true) %} {% if
-    messages %}
-    <ul>
-      {% for category, message in messages %}
-      <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %} {% endwith %}
-    <script src="/static/js/script.js"></script>
+    <a href="{{ url_for('index') }}">Back to Home</a>
   </body>
 </html>
