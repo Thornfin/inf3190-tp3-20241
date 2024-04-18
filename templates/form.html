@@ -1,0 +1,51 @@
+<!-- file: templates/form.html -->
+<!-- file: templates/form.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add a Pet for Adoption</title>
+    <link href="/static/css/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Add Your Pet</h1>
+    <form method="post" action="{{ url_for('add_animal') }}">
+      <input type="text" name="nom" placeholder="Name" required />
+      <input type="text" name="espece" placeholder="Species" required />
+      <input type="text" name="race" placeholder="Breed" required />
+      <input
+        type="number"
+        name="age"
+        placeholder="Age"
+        required
+        min="0"
+        max="30"
+      />
+      <textarea
+        name="description"
+        placeholder="Description"
+        required
+      ></textarea>
+      <input type="email" name="courriel" placeholder="Email" required />
+      <input type="text" name="adresse" placeholder="Address" required />
+      <input type="text" name="ville" placeholder="City" required />
+      <input
+        type="text"
+        name="cp"
+        placeholder="Postal Code"
+        required
+        pattern="[A-Za-z]\d[A-Za-z] \d[A-Za-z]\d"
+      />
+      <button type="submit">Submit</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %}
+    <ul>
+      {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %} {% endwith %}
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>
